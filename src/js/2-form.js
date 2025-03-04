@@ -16,8 +16,13 @@ function submitOnForm(event) {
   event.preventDefault();
   const form = event.currentTarget;
 
-  localStorage.removeItem(STORAGE_KEY);
-  form.reset();
+  if (formData.email === '' || formData.message === '') {
+    alert('Please, fill all fields');
+    return;
+  } else {
+    localStorage.removeItem(STORAGE_KEY);
+    form.reset();
+  }
 }
 
 function saveUserInfo(event) {
@@ -29,6 +34,10 @@ function saveUserInfo(event) {
 
 function loadLastInfo() {
   const lastInfo = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  if (lastInfo === null) {
+    return;
+  }
+
   form.elements.email.value = lastInfo.email || '';
   form.elements.message.value = lastInfo.message || '';
 }
