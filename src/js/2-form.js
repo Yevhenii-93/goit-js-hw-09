@@ -15,8 +15,10 @@ let formData = {
 function submitOnForm(event) {
   event.preventDefault();
   const form = event.currentTarget;
+  const email = form.elements.email.value;
+  const message = form.elements.message.value;
 
-  if (formData.email === '' || formData.message === '') {
+  if (email === '' || message === '') {
     alert('Please, fill all fields');
     return;
   } else {
